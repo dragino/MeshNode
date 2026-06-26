@@ -1,0 +1,41 @@
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python runtime
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Packaging/build outputs
+build/
+dist/
+*.egg-info/
+*.spec~
+
+# Local runtime data and secrets
+meshdebug_settings.json
+virtual_identity.json
+factory_identity_profiles.json
+*.key
+*.pem
+*.p12
+*.crt
+*.csr
+.env
+
+# Local outputs
+logs/
+output/
+outputs/
+temp/
+tmp/
+*.log
+*.tmp
