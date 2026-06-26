@@ -1,0 +1,224 @@
+#pragma once
+
+// Dragino default configuration.
+// Keep this file ASCII-only because it is included by many low-level modules.
+
+// Sync wakeup defaults
+#ifndef DRAGINO_AUTO_SLEEP_ENABLE
+#define DRAGINO_AUTO_SLEEP_ENABLE               1
+#endif
+
+#define DRAGINO_DEFAULT_WAKEUP_ENABLED          false
+#define DRAGINO_DEFAULT_WAKEUP_INTERVAL_MIN     5
+#define DRAGINO_DEFAULT_WAKEUP_ALIGN_MINUTE     0
+#define DRAGINO_DEFAULT_WAKEUP_OFFSET_SEC       0
+
+// Wakeup profile applied once a remote node accepts JoinNetWorkV2.
+#ifndef DRAGINO_POST_JOIN_WAKEUP_INTERVAL_MIN
+#define DRAGINO_POST_JOIN_WAKEUP_INTERVAL_MIN   30
+#endif
+
+// Wakeup communication timing defaults, in milliseconds.
+#define DRAGINO_DEFAULT_STARTUP_DELAY_MS        (15UL * 1000UL)
+#define DRAGINO_DEFAULT_GATEWAY_TIMEOUT_MS      (90UL * 1000UL)
+#define DRAGINO_DEFAULT_FINAL_WAIT_MS           (5UL * 1000UL)
+#define DRAGINO_DEFAULT_RANDOM_DELAY_MAX_MS     (15UL * 1000UL)
+#define DRAGINO_BUTTON_WAKE_UPLOAD_DELAY_MS     (3UL * 1000UL)
+#define DRAGINO_BUTTON_WAKE_UPLOAD_RANDOM_MAX_MS (2UL * 1000UL)
+#define DRAGINO_SENSOR_DATA_READY_RETRY_MS      200UL
+#define DRAGINO_SENSOR_DATA_READY_TIMEOUT_MS    (15UL * 1000UL)
+
+// Private channel indices. Channel 0 remains the native primary channel.
+#define DRAGINO_CHANNEL_PRIMARY                 0
+#define DRAGINO_CHANNEL_PRIVATE_CONFIG          1
+#define DRAGINO_CHANNEL_PRIVATE_FUNCTION        2
+
+// Private channel names used by quick enrollment. They are intentionally not
+// carried in JoinNetWorkV2, so all firmware builds must share these defaults.
+#ifndef DRAGINO_DEFAULT_PRIVATE_CONFIG_CHANNEL_NAME
+#define DRAGINO_DEFAULT_PRIVATE_CONFIG_CHANNEL_NAME   "dg-cfg"
+#endif
+
+#ifndef DRAGINO_DEFAULT_PRIVATE_FUNCTION_CHANNEL_NAME
+#define DRAGINO_DEFAULT_PRIVATE_FUNCTION_CHANNEL_NAME "dg-fn"
+#endif
+
+#define DRAGINO_JOIN_V2_DOMAIN                        "DraginoJoinV2"
+#define DRAGINO_CHANGE_ADMIN_DOMAIN                   "DraginoChangeAdminV1"
+#define DRAGINO_GATEWAY_ANNOUNCE_DOMAIN               "DraginoGatewayAnnounceV1"
+#define DRAGINO_JOIN_V2_CHANNEL1_LABEL                "dragino-channel-1"
+#define DRAGINO_JOIN_V2_CHANNEL2_LABEL                "dragino-channel-2"
+#define DRAGINO_JOIN_V2_NETWORK_SEED_MIN_SIZE         16
+#define DRAGINO_JOIN_V2_NETWORK_SEED_MAX_SIZE         32
+
+#ifndef DRAGINO_CONFIG_KEEP_AWAKE_MAX_SEC
+#define DRAGINO_CONFIG_KEEP_AWAKE_MAX_SEC             600
+#endif
+
+// FactoryIdentity storage defaults.
+#ifndef DRAGINO_FACTORY_IDENTITY_LEGACY_KEY_ADDRESS
+#define DRAGINO_FACTORY_IDENTITY_LEGACY_KEY_ADDRESS   0x0803E000UL
+#endif
+
+#ifndef DRAGINO_FACTORY_IDENTITY_LEGACY_KEY_SIZE
+#define DRAGINO_FACTORY_IDENTITY_LEGACY_KEY_SIZE      128
+#endif
+
+#ifndef DRAGINO_FACTORY_IDENTITY_LEGACY_AUTODETECT
+#define DRAGINO_FACTORY_IDENTITY_LEGACY_AUTODETECT    1
+#endif
+
+#ifndef DRAGINO_FACTORY_IDENTITY_MARKER_READ_COMPAT
+#define DRAGINO_FACTORY_IDENTITY_MARKER_READ_COMPAT   0
+#endif
+
+#ifndef DRAGINO_FACTORY_IDENTITY_MARKER_WRITE_ENABLE
+#define DRAGINO_FACTORY_IDENTITY_MARKER_WRITE_ENABLE  0
+#endif
+
+#define DRAGINO_FACTORY_IDENTITY_LEGACY_LAYOUT_VERSION 1
+#define DRAGINO_FACTORY_IDENTITY_DERIVE_ALG_VERSION    1
+
+// Factory and degraded-mode windows, in milliseconds.
+#define DRAGINO_FACTORY_ACTIVE_WINDOW_MS        (4UL * 60UL * 1000UL)
+#define DRAGINO_DEGRADED_WAKEUP_INTERVAL_MS     (60UL * 60UL * 1000UL)
+#define DRAGINO_DEGRADED_ACTIVE_WINDOW_MS       (5UL * 60UL * 1000UL)
+#define DRAGINO_FACTORY_IDENTITY_WARNING_TO_PHONE_INTERVAL_MS (5UL * 1000UL)
+#define DRAGINO_FACTORY_IDENTITY_MISSING_RETRY_MS (5UL * 1000UL)
+
+#ifndef DRAGINO_PRIVATE_CONFIG_APPLY_DELAY_MS
+#define DRAGINO_PRIVATE_CONFIG_APPLY_DELAY_MS   (5UL * 1000UL)
+#endif
+
+#ifndef DRAGINO_RESET_NETWORK_APPLY_DELAY_MS
+#define DRAGINO_RESET_NETWORK_APPLY_DELAY_MS    DRAGINO_PRIVATE_CONFIG_APPLY_DELAY_MS
+#endif
+
+#ifndef DRAGINO_RESET_CONFIG_REBOOT_DELAY_MS
+#define DRAGINO_RESET_CONFIG_REBOOT_DELAY_MS    (500UL)
+#endif
+
+#ifndef DRAGINO_CHANNEL12_APPLY_DELAY_MS
+#define DRAGINO_CHANNEL12_APPLY_DELAY_MS        DRAGINO_PRIVATE_CONFIG_APPLY_DELAY_MS
+#endif
+
+#ifndef DRAGINO_CHANGE_NETWORK_KEY_APPLY_DELAY_MS
+#define DRAGINO_CHANGE_NETWORK_KEY_APPLY_DELAY_MS DRAGINO_PRIVATE_CONFIG_APPLY_DELAY_MS
+#endif
+
+// Join-lock advertise timing. The challenge is public, but it must be current
+// to prevent replaying an old enrollment packet.
+#define DRAGINO_FACTORY_NODEINFO_INTERVAL_MS    (60UL * 1000UL)
+#define DRAGINO_JOIN_ADVERTISE_INTERVAL_MS      (60UL * 1000UL)
+#define DRAGINO_JOIN_CHALLENGE_TTL_MS           (10UL * 60UL * 1000UL)
+
+// Factory discovery while a remote node has not joined a private network.
+#ifndef DRAGINO_FACTORY_DISCOVERY_SLEEP_MS
+#define DRAGINO_FACTORY_DISCOVERY_SLEEP_MS      (20UL * 60UL * 1000UL)
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_BOOT_DELAY_MS
+#define DRAGINO_FACTORY_DISCOVERY_BOOT_DELAY_MS DRAGINO_DEFAULT_STARTUP_DELAY_MS
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_WAKE_DELAY_MS
+#define DRAGINO_FACTORY_DISCOVERY_WAKE_DELAY_MS (3UL * 1000UL)
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_BOOT_BURST_COUNT
+#define DRAGINO_FACTORY_DISCOVERY_BOOT_BURST_COUNT 50
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_MESSAGE_INTERVAL_MS
+#define DRAGINO_FACTORY_DISCOVERY_MESSAGE_INTERVAL_MS (6UL * 1000UL)
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_NODEINFO_EVERY_JOINLOCKS
+#define DRAGINO_FACTORY_DISCOVERY_NODEINFO_EVERY_JOINLOCKS 10
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_TIMER_SEND_COUNT
+#define DRAGINO_FACTORY_DISCOVERY_TIMER_SEND_COUNT 1
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_BUTTON_SEND_COUNT
+#define DRAGINO_FACTORY_DISCOVERY_BUTTON_SEND_COUNT 1
+#endif
+
+#ifndef DRAGINO_FACTORY_MANUAL_SEND_BUSINESS_DATA
+#define DRAGINO_FACTORY_MANUAL_SEND_BUSINESS_DATA 1
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_POST_SEND_WAIT_MS
+#define DRAGINO_FACTORY_DISCOVERY_POST_SEND_WAIT_MS (20UL * 1000UL)
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_BUTTON_WAIT_MS
+#define DRAGINO_FACTORY_DISCOVERY_BUTTON_WAIT_MS (90UL * 1000UL)
+#endif
+
+#ifndef DRAGINO_FACTORY_DISCOVERY_ROTATE_CHALLENGE_PER_SESSION
+#define DRAGINO_FACTORY_DISCOVERY_ROTATE_CHALLENGE_PER_SESSION 1
+#endif
+
+// Other defaults
+#define DRAGINO_DEFAULT_DEVICE_NAME             "DraginoMesh"
+
+// Periodic sleep should not rewrite NodeDB on every wake cycle by default.
+// Set to 1 in build flags if a variant needs the original save-before-sleep behavior.
+#ifndef DRAGINO_SAVE_NODEDB_BEFORE_SLEEP
+#define DRAGINO_SAVE_NODEDB_BEFORE_SLEEP        0
+#endif
+
+// Remote nodes keep NodeInfo receive/reply enabled, but disable Meshtastic's
+// startup/periodic NodeInfo broadcast. Controlled sends are triggered by
+// Dragino enrollment, identity changes, manual actions, or gateway requests.
+#ifndef DRAGINO_REMOTE_DISABLE_NODEINFO_AUTO_BROADCAST
+#if defined(DRAGINO_REMOTENODE) && defined(DRAGINO_STM32)
+#define DRAGINO_REMOTE_DISABLE_NODEINFO_AUTO_BROADCAST 1
+#else
+#define DRAGINO_REMOTE_DISABLE_NODEINFO_AUTO_BROADCAST 0
+#endif
+#endif
+
+// Dragino remote-node periodic NodeInfo broadcast. This is an opportunity task:
+// it is checked only while the node is already awake and never becomes a wake
+// source by itself.
+#ifndef DRAGINO_PERIODIC_NODEINFO_ENABLE
+#if defined(DRAGINO_REMOTENODE) && defined(DRAGINO_STM32)
+#define DRAGINO_PERIODIC_NODEINFO_ENABLE        1
+#else
+#define DRAGINO_PERIODIC_NODEINFO_ENABLE        0
+#endif
+#endif
+
+#ifndef DRAGINO_PERIODIC_NODEINFO_MIN_SEC
+#define DRAGINO_PERIODIC_NODEINFO_MIN_SEC       (30UL * 60UL)
+#endif
+
+#ifndef DRAGINO_PERIODIC_NODEINFO_MAX_SEC
+#define DRAGINO_PERIODIC_NODEINFO_MAX_SEC       (60UL * 60UL)
+#endif
+
+#ifndef DRAGINO_PERIODIC_NODEINFO_RETRY_SEC
+#define DRAGINO_PERIODIC_NODEINFO_RETRY_SEC     (10UL * 60UL)
+#endif
+
+#ifndef DRAGINO_PERIODIC_NODEINFO_TX_GUARD_MS
+#define DRAGINO_PERIODIC_NODEINFO_TX_GUARD_MS   (5UL * 1000UL)
+#endif
+
+// Debug switches
+#define DRAGINO_DEBUG_SIGNATURE                 1
+
+#if DRAGINO_DEFAULT_WAKEUP_INTERVAL_MIN < 1
+#error "DRAGINO_DEFAULT_WAKEUP_INTERVAL_MIN must be at least 1"
+#endif
+
+#if DRAGINO_DEFAULT_WAKEUP_ALIGN_MINUTE >= 60
+#error "DRAGINO_DEFAULT_WAKEUP_ALIGN_MINUTE must be 0-59"
+#endif
+
+#if DRAGINO_PERIODIC_NODEINFO_MAX_SEC < DRAGINO_PERIODIC_NODEINFO_MIN_SEC
+#error "DRAGINO_PERIODIC_NODEINFO_MAX_SEC must be >= DRAGINO_PERIODIC_NODEINFO_MIN_SEC"
+#endif

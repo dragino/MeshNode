@@ -1,0 +1,5 @@
+#pragma once
+
+#define STM32_RTC_DEFAULT_DAY     1
+#define STM32_RTC_DEFAULT_MONTH   6
+#define STM32_RTC_DEFAULT_YEAR    2026
